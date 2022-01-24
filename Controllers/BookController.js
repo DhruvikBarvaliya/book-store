@@ -18,21 +18,106 @@ module.exports = {
         })
     },
     getAllBook: (req, res) => {
-
+        Book.findAll().then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Recived",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail Recived"
+                })
+            }
+        })
     },
     getBookById: (req, res) => {
-
+        let id = req.params.id
+        Book.findByPk(id).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Recived",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail Recived"
+                })
+            }
+        })
     },
-    getBookByAuthorName: (req, res) => {
-
+    getBookByAuthorId: (req, res) => {
+        let id = req.params.author_id
+        Book.findOne({ where: { author_id: id } }).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Recived",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail Recived"
+                })
+            }
+        })
     },
     updateBook: (req, res) => {
-
+        let id = req.params.id
+        let data = req.body;
+        Book.update(data, {
+            where: { id }
+        }).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Updated",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail To Updated"
+                })
+            }
+        })
     },
     deleteBookById: (req, res) => {
-
+        let id = req.params.id
+        Book.destroy({ where: { id } }).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Deleted",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail To Deleted"
+                })
+            }
+        })
     },
     deleteAllBook: (req, res) => {
-
+        Book.destroy({ where: {} }).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Deleted",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail To Deleted"
+                })
+            }
+        })
     }
 }

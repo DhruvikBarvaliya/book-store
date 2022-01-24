@@ -6,7 +6,7 @@ const db = require('./Config/Sequelize');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
     console.log("Drop and re-sync db.");
 });
 app.use(indexRouter)

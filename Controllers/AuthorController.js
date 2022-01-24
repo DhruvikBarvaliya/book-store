@@ -19,18 +19,89 @@ module.exports = {
         });
     },
     getAllAuthor: (req, res) => {
-
+        Author.findAll().then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Recived",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail Recived"
+                })
+            }
+        })
     },
     getAuthorById: (req, res) => {
-
+        let id = req.query.id
+        Author.findByPk(id).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Recived",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail Recived"
+                })
+            }
+        })
     },
     updateAuthor: (req, res) => {
-
+        let id = req.query.id
+        let data = req.body;
+        Author.update(data, {
+            where: { id: id }
+        }).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Updated",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail To Updated"
+                })
+            }
+        })
     },
     deleteAuthorById: (req, res) => {
-
+        let id = req.query.id
+        Author.destroy({ where: { id: id } }).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Deleted",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail To Deleted"
+                })
+            }
+        })
     },
     deleteAllAuthor: (req, res) => {
-
+        Author.destroy({ where: {} }).then(result => {
+            if (result) {
+                res.json({
+                    success: 1,
+                    message: "Data Deleted",
+                    data: result
+                })
+            } else {
+                res.json({
+                    success: 0,
+                    message: "Fail To Deleted"
+                })
+            }
+        })
     }
 }

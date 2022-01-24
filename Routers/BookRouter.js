@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.post('/addBook', bookController.addBook)
 router.get('/getAllBook', bookController.getAllBook)
 router.get('/getBookById/:id', bookController.getBookById)
-router.get('/getBookByAuthorName/:name', bookController.getBookByAuthorName)
+router.get('/getBookByAuthorId/:author_id', bookController.getBookByAuthorId)
 router.put('/updateBook/:id', bookController.updateBook)
 router.delete('/deleteBookById/:id', bookController.deleteBookById)
 router.delete('/deleteAllBook', bookController.deleteAllBook)
